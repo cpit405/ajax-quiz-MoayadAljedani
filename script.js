@@ -9,6 +9,15 @@ getReposButton.addEventListener('click', async () => {
     // Example: https://api.github.com/users/facebook/repos
     const url = `https://api.github.com/users/${username}/repos`;
     const ulElement = document.getElementById('repos-list');
+      const response = await fetch(url);
+     const repositries = await response.json();
+ reposList.innerHTML = '';
+
+ repositries.forEach(repo => {
+            const listItem = document.createElement('li');
+            listItem.textContent = repo.full_name;
+            reposList.appendChild(listItem);
+        });
     // Fetch and display the list of repositories as li elements inside the ul element.
 
 });
